@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var deap = require('deap');
 var fs = require('fs');
@@ -18,11 +18,19 @@ module.exports = function(opts, cb) {
 
     if (options.data && !isObject(options.data)) {
       fs.readFile(options.data, function (err, file) {
+        if (err) return error(err);
+
         options.data = JSON.parse(String(file));
+
         cb(options);
       });
     } else {
       cb(options);
+    }
+
+    function error(err) {
+      cb(new gutil.PluginError(PLUGIN_NAME, err, {fileName: err.path}));
+      this.emit('error', new gutil.PluginError(PLUGIN_NAME, err));
     }
   }
 
@@ -46,7 +54,7 @@ module.exports = function(opts, cb) {
         error(err);
       }
 
-      function error (err) {
+      function error(err) {
         cb(new gutil.PluginError(PLUGIN_NAME, err, {fileName: file.path}));
         this.emit('error', new gutil.PluginError(PLUGIN_NAME, err));
       }
