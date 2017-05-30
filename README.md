@@ -1,6 +1,6 @@
 # gulp-tumblr-theme-parser
 
-[Node tumblr theme parser](https://github.com/carrot/tumblr-theme-parser) for [gulpjs/gulp: The streaming build system](https://github.com/gulpjs/gulp)
+[Node tumblr theme parser](https://github.com/carrot/tumblr-theme-parser) for [gulp](https://github.com/gulpjs/gulp)
 
 # Basic Usage
 
