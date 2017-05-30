@@ -4,7 +4,7 @@
   "description": "Gulp plugin for tumblr theme parser",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha test"
   },
   "repository": {
     "type": "git",
@@ -27,5 +27,9 @@
     "isobject": "^3.0.0",
     "through2": "^2.0.3",
     "tumblr-theme-parser": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.2",
+    "should": "^11.2.1"
   }
 }
