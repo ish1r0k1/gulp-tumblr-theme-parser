@@ -1,4 +1,4 @@
-# gulp-tumblr-theme-parser
+# gulp-tumblr-theme-parser[![Build Status](https://travis-ci.org/ish1r0k1/gulp-tumblr-theme-parser.svg?branch=master)](https://travis-ci.org/ish1r0k1/gulp-tumblr-theme-parser)
 
 [Node tumblr theme parser](https://github.com/carrot/tumblr-theme-parser) for [gulp](https://github.com/gulpjs/gulp)
 
