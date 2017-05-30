@@ -1,0 +1,31 @@
+{
+  "name": "gulp-tumblr-theme-parser",
+  "version": "1.0.0",
+  "description": "Gulp plugin for tumblr theme parser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ish1r0k1/gulp-tumblr-theme-parser.git"
+  },
+  "keywords": [
+    "gulp",
+    "gulpplugin",
+    "tumblr"
+  ],
+  "author": "Hiroki Ishiwatari",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ish1r0k1/gulp-tumblr-theme-parser/issues"
+  },
+  "homepage": "https://github.com/ish1r0k1/gulp-tumblr-theme-parser#readme",
+  "dependencies": {
+    "deap": "^1.0.0",
+    "gulp-util": "^3.0.8",
+    "isobject": "^3.0.0",
+    "through2": "^2.0.3",
+    "tumblr-theme-parser": "^1.0.0"
+  }
+}
