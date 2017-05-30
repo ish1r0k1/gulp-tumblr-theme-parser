@@ -4,7 +4,7 @@
 
 # Basic Usage
 
-```
+```javascript
 'use strict';
 
 var gulp = require('gulp');
@@ -22,7 +22,7 @@ gulp.task('html', function() {
 ## data
 This property can still pass an object as a file path.
 
-```
+```javascript
 { data: './data.json' }
 
 // or
