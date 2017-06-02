@@ -10,58 +10,48 @@ var through = require('through2');
 
 var PLUGIN_NAME = 'gulp-tumblr-theme-parser';
 
-module.exports = function(opts, cb) {
-  opts = opts ? opts : {};
+module.exports = function (opts) {
+  return through.obj(function (file, enc, cb) {
+    opts = opts ? opts : {};
+    opts = deap({}, opts);
 
-  function setup(opts, cb) {
-    var options = deap({}, opts);
-
-    if (options.data && !isObject(options.data)) {
-      fs.readFile(options.data, function (err, file) {
-        if (err) return error(err);
-
-        options.data = JSON.parse(String(file));
-
-        cb(options);
-      });
-    } else {
-      cb(options);
+    if (file.isNull() || !file.contents.toString()) {
+      return cb(null, file);
     }
 
-    function error(err) {
-      cb(new gutil.PluginError(PLUGIN_NAME, err, {fileName: err.path}));
-      this.emit('error', new gutil.PluginError(PLUGIN_NAME, err));
-    }
-  }
-
-  function compileHtml(file, enc, cb) {
-    setup(opts || {}, compile);
-
-    function compile(opts) {
+    var compile = function compile() {
       var originalContents = String(file.contents);
       var data = opts.data || {};
-
-      if (file.isNull() || !file.contents.toString()) {
-        cb(null, file);
-        return;
-      }
 
       try {
         var compiled = parser.compile(originalContents, data);
         file.contents = new Buffer(compiled);
-        file.path = path.join(file.base, file.relative)
+        file.path = path.join(file.base, file.relative);
       } catch (err) {
         error(err);
       }
 
-      function error(err) {
-        cb(new gutil.PluginError(PLUGIN_NAME, err, {fileName: file.path}));
-        this.emit('error', new gutil.PluginError(PLUGIN_NAME, err));
-      }
-
       cb(null, file);
-    }
-  }
+    };
 
-  return through.obj(compileHtml);
+    var error = function error(err) {
+      return cb(new gutil.PluginError(PLUGIN_NAME, err));
+    };
+
+    if (opts.data && !isObject(opts.data)) {
+      fs.readFile(opts.data, function (err, file) {
+        if (err) return error(err);
+
+        try {
+          opts.data = JSON.parse(String(file));
+        } catch (err) {
+          error(err);
+        }
+
+        compile();
+      });
+    } else {
+      compile();
+    }
+  });
 };

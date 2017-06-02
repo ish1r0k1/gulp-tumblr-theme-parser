@@ -13,8 +13,14 @@ var parser = require('gulp-tumblr-theme-parser');
 gulp.task('build', function() {
   return gulp.src('./index.html')
     .pipe(parser({ data: './data.json' }))
+    .on('error', errorHandler)
     .pipe(gulp.dest('./build'));
 });
+
+var errorHandler = function (err) {
+  console.log('Error: ' + err);
+  this.emit('end')
+}
 ```
 
 # Options
