@@ -10,7 +10,7 @@
 var gulp = require('gulp');
 var parser = require('gulp-tumblr-theme-parser');
 
-gulp.task('html', function() {
+gulp.task('build', function() {
   return gulp.src('./index.html')
     .pipe(parser({ data: './data.json' }))
     .pipe(gulp.dest('./build'));
@@ -23,9 +23,9 @@ gulp.task('html', function() {
 This property can still pass an object as a file path.
 
 ```javascript
-{ data: './data.json' }
+{ data: { 'title': 'Hello, world.' } }
 
 // or
 
-{ data: { 'title': 'Hello, world.' } }
+{ data: './data.json' }
 ```
