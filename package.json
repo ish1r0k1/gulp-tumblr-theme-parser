@@ -1,6 +1,6 @@
 {
   "name": "gulp-tumblr-theme-parser",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Gulp plugin for tumblr theme parser",
   "main": "index.js",
   "scripts": {

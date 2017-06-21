@@ -2,6 +2,12 @@
 
 [Node tumblr theme parser](https://github.com/carrot/tumblr-theme-parser) for [gulp](https://github.com/gulpjs/gulp)
 
+# Install
+
+```
+npm install -D  gulp-tumblr-theme-parser
+```
+
 # Basic Usage
 
 ```javascript
