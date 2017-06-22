@@ -28,7 +28,7 @@ module.exports = function (opts) {
         file.contents = new Buffer(compiled);
         file.path = path.join(file.base, file.relative);
       } catch (err) {
-        error(err);
+        return error(err);
       }
 
       cb(null, file);
@@ -45,7 +45,7 @@ module.exports = function (opts) {
         try {
           opts.data = JSON.parse(String(file));
         } catch (err) {
-          error(err);
+          return error(err);
         }
 
         compile();

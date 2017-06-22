@@ -110,4 +110,61 @@ describe('gulp-tumblr-theme-parser', function() {
     stream.write(srcFile)
     stream.end()
   })
+
+  it('should throw error when the data file parsing error', function (done) {
+    var srcFile = new gutil.File({
+      path: 'test/fixtures/ok.html',
+      cwd: 'test/',
+      base: 'test/fixtures',
+      contents: fs.readFileSync('test/fixtures/nok.html')
+    })
+
+    var stream = parser({ data: './error.json' })
+
+    stream.on('error', function (err) {
+      should.exist(err)
+      done()
+    })
+
+    stream.write(srcFile)
+    stream.end()
+  })
+
+  it('should throw error when the no corresponding parameters', function (done) {
+    var srcFile = new gutil.File({
+      path: 'test/fixtures/ok.html',
+      cwd: 'test/',
+      base: 'test/fixtures',
+      contents: fs.readFileSync('test/fixtures/nok.html')
+    })
+
+    var stream = parser({ data: { description: 'Node tumblr theme parser for gulp' } })
+
+    stream.on('error', function (err) {
+      should.exist(err)
+      done()
+    })
+
+    stream.write(srcFile)
+    stream.end()
+  })
+
+  it('should throw error when the no data parameter', function (done) {
+    var srcFile = new gutil.File({
+      path: 'test/fixtures/ok.html',
+      cwd: 'test/',
+      base: 'test/fixtures',
+      contents: fs.readFileSync('test/fixtures/nok.html')
+    })
+
+    var stream = parser()
+
+    stream.on('error', function (err) {
+      should.exist(err)
+      done()
+    })
+
+    stream.write(srcFile)
+    stream.end()
+  })
 })
